@@ -1,8 +1,8 @@
-(uiop:define-package #:hsx/builtin
+(uiop:define-package #:shoelace-hsx/builtin
   (:use #:cl)
-  (:import-from #:hsx/dsl
+  (:import-from #:shoelace-hsx/dsl
                 #:deftag))
-(in-package #:hsx/builtin)
+(in-package #:shoelace-hsx/builtin)
 
 (defmacro define-builtin-tags (&rest names)
   `(progn

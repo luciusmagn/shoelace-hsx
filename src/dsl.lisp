@@ -1,24 +1,24 @@
-(defpackage #:hsx/dsl
+(defpackage #:shoelace-hsx/dsl
   (:use #:cl)
   (:import-from #:alexandria
                 #:make-keyword
                 #:symbolicate)
-  (:import-from #:hsx/element
+  (:import-from #:shoelace-hsx/element
                 #:create-element)
-  (:export #:hsx
+  (:export #:shoelace-hsx
            #:deftag
            #:defcomp))
-(in-package #:hsx/dsl)
+(in-package #:shoelace-hsx/dsl)
 
-;;; hsx macro
+;;; shoelace-hsx macro
 
-(defmacro hsx (form)
+(defmacro shoelace-hsx (form)
   "Detect HSX elements and automatically import them."
   (detect-elements form))
 
 (defun detect-builtin-element (sym)
   (multiple-value-bind (builtin-sym kind)
-      (find-symbol (string sym) :hsx/builtin)
+      (find-symbol (string sym) :shoelace-hsx/builtin)
     (and (eq kind :external) builtin-sym)))
 
 (defun start-with-tilde-p (sym)
@@ -43,9 +43,9 @@
                       tail))
         form)))
 
-;;; defhsx macro
+;;; defshoelace-hsx macro
 
-(defmacro defhsx (name element-type)
+(defmacro defshoelace-hsx (name element-type)
   ; Use a macro instead of a function to enable semantic indentation similar to HTML.
   `(defmacro ,name (&body body)
      `(%create-element ,',element-type ,@body)))
@@ -71,7 +71,7 @@
 
 (defmacro deftag (name)
   `(eval-when (:compile-toplevel :load-toplevel :execute)
-     (defhsx ,name ,(make-keyword name))))
+     (defshoelace-hsx ,name ,(make-keyword name))))
 
 (defmacro defcomp (~name props &body body)
   "Define an HSX function component.
@@ -88,4 +88,4 @@ The body of the component must produce a valid HSX element."
     `(eval-when (:compile-toplevel :load-toplevel :execute)
        (defun ,%name ,props
          ,@body)
-       (defhsx ,~name (fdefinition ',%name)))))
+       (defshoelace-hsx ,~name (fdefinition ',%name)))))

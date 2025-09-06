@@ -1,4 +1,4 @@
-(defsystem "hsx"
+(defsystem "shoelace-hsx"
   :version "0.6.0"
   :description "Simple and powerful HTML generation library."
   :author "Akira Tempaku, Bo Yao"
@@ -6,7 +6,7 @@
   :license "MIT"
   :long-description #.(uiop:read-file-string
                        (uiop:subpathname *load-pathname* "README.md"))
-  :in-order-to ((test-op (test-op hsx-test)))
+  :in-order-to ((test-op (test-op shoelace-hsx-test)))
   :class :package-inferred-system
   :pathname "src"
-  :depends-on ("hsx/main"))
+  :depends-on ("shoelace-hsx/main"))

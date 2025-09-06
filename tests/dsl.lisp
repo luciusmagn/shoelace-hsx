@@ -1,78 +1,78 @@
-(defpackage #:hsx-test/dsl
+(defpackage #:shoelace-hsx-test/dsl
   (:use #:cl
         #:rove
-        #:hsx/dsl)
-  (:import-from #:hsx/builtin)
-  (:import-from #:hsx/element
+        #:shoelace-hsx/dsl)
+  (:import-from #:shoelace-hsx/builtin)
+  (:import-from #:shoelace-hsx/element
                 #:element-props
                 #:element-children))
-(in-package #:hsx-test/dsl)
+(in-package #:shoelace-hsx-test/dsl)
 
 (defcomp ~comp1 (&key children)
-  (hsx (div children)))
+  (shoelace-hsx (div children)))
 
 (deftest detect-elements-test
   (testing "detect-tags"
-    (ok (expands '(hsx (div div div))
-                 '(hsx/builtin:div div div)))
-    (ok (expands '(hsx (div (div div (div))))
-                 '(hsx/builtin:div
-                   (hsx/builtin:div
+    (ok (expands '(shoelace-hsx (div div div))
+                 '(shoelace-hsx/builtin:div div div)))
+    (ok (expands '(shoelace-hsx (div (div div (div))))
+                 '(shoelace-hsx/builtin:div
+                   (shoelace-hsx/builtin:div
                      div
-                     (hsx/builtin:div))))))
+                     (shoelace-hsx/builtin:div))))))
 
   (testing "detect-components"
-    (ok (expands '(hsx (~comp1 (div)))
-                 '(~comp1 (hsx/builtin:div)))))
+    (ok (expands '(shoelace-hsx (~comp1 (div)))
+                 '(~comp1 (shoelace-hsx/builtin:div)))))
 
   (testing "ignore-malformed-form"
-    (ok (expands '(hsx (div . div))
+    (ok (expands '(shoelace-hsx (div . div))
                  '(div . div)))
-    (ok (expands '(hsx ((div)))
+    (ok (expands '(shoelace-hsx ((div)))
                  '((div)))))
 
   (testing "ignore-cl-form"
-    (ok (expands '(hsx (labels ((div () "div"))
+    (ok (expands '(shoelace-hsx (labels ((div () "div"))
                          (div)))
                  '(labels ((div () "div"))
                    (div))))))
 
 (deftest dsl-test
-  (testing "empty-hsx"
-    (let ((elm (hsx (div))))
+  (testing "empty-shoelace-hsx"
+    (let ((elm (shoelace-hsx (div))))
       (ok (null (element-props elm)))
       (ok (null (element-children elm)))))
  
-  (testing "hsx-with-static-props"
-    (let ((elm (hsx (div :prop1 "value1" :prop2 "value2"))))
+  (testing "shoelace-hsx-with-static-props"
+    (let ((elm (shoelace-hsx (div :prop1 "value1" :prop2 "value2"))))
       (ok (equal '(:prop1 "value1" :prop2 "value2")
                  (element-props elm)))
       (ok (null (element-children elm)))))
   
-  (testing "hsx-with-dynamic-props"
+  (testing "shoelace-hsx-with-dynamic-props"
     (let* ((props '(:prop1 "value1" :prop2 "value2"))
-           (elm (hsx (div props))))
+           (elm (shoelace-hsx (div props))))
       (ok (equal props (element-props elm)))
       (ok (null (element-children elm)))))
   
-  (testing "hsx-with-children"
-    (let ((elm (hsx (div
+  (testing "shoelace-hsx-with-children"
+    (let ((elm (shoelace-hsx (div
                       "child1"
                       "child2"))))
       (ok (null (element-props elm)))
       (ok (equal (list "child1" "child2") (element-children elm)))))
   
-  (testing "hsx-with-static-props-and-children"
-    (let ((elm (hsx (div :prop1 "value1" :prop2 "value2"
+  (testing "shoelace-hsx-with-static-props-and-children"
+    (let ((elm (shoelace-hsx (div :prop1 "value1" :prop2 "value2"
                       "child1"
                       "child2"))))
       (ok (equal '(:prop1 "value1" :prop2 "value2")
                  (element-props elm)))
       (ok (equal (list "child1" "child2") (element-children elm)))))
   
-  (testing "hsx-with-dynamic-props-and-children"
+  (testing "shoelace-hsx-with-dynamic-props-and-children"
     (let* ((props '(:prop1 "value1" :prop2 "value2"))
-           (elm (hsx (div props
+           (elm (shoelace-hsx (div props
                        "child1"
                        "child2"))))
       (ok (equal props (element-props elm)))

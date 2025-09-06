@@ -1,8 +1,8 @@
-(defpackage #:hsx/element
+(defpackage #:shoelace-hsx/element
   (:use #:cl)
   (:import-from #:str
                 #:collapse-whitespaces)
-  (:import-from #:hsx/utils
+  (:import-from #:shoelace-hsx/utils
                 #:escape-html-text-content
                 #:escape-html-attribute)
   (:export #:element
@@ -18,7 +18,7 @@
            #:element-children
            #:expand-component
            #:render-to-string))
-(in-package #:hsx/element)
+(in-package #:shoelace-hsx/element)
 
 ;;; tag group definitions
 

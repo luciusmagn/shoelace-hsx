@@ -1,12 +1,12 @@
-(defpackage :hsx
-  (:nicknames #:hsx/main)
+(defpackage :shoelace-hsx
+  (:nicknames #:shoelace-hsx/main)
   (:use #:cl
-        #:hsx/element
-        #:hsx/dsl
-        #:hsx/utils)
-  (:import-from #:hsx/builtin)
-  (:export #:hsx
+        #:shoelace-hsx/element
+        #:shoelace-hsx/dsl
+        #:shoelace-hsx/utils)
+  (:import-from #:shoelace-hsx/builtin)
+  (:export #:shoelace-hsx
            #:defcomp
            #:render-to-string
            #:clsx))
-(in-package :hsx)
+(in-package :shoelace-hsx)

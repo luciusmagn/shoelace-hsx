@@ -1,4 +1,4 @@
-(defpackage #:hsx/utils
+(defpackage #:shoelace-hsx/utils
   (:use #:cl)
   (:import-from #:alexandria
                 #:alist-hash-table
@@ -7,7 +7,7 @@
   (:export #:escape-html-attribute
            #:escape-html-text-content
            #:clsx))
-(in-package #:hsx/utils)
+(in-package #:shoelace-hsx/utils)
 
 (defparameter *text-content-escape-map*
   (alist-hash-table

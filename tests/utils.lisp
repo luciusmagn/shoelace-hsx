@@ -1,8 +1,8 @@
-(defpackage #:hsx-test/utils
+(defpackage #:shoelace-hsx-test/utils
   (:use #:cl
         #:rove
-        #:hsx/utils))
-(in-package #:hsx-test/utils)
+        #:shoelace-hsx/utils))
+(in-package #:shoelace-hsx-test/utils)
 
 (deftest text-util-test
   (testing "escape-html-attribute"

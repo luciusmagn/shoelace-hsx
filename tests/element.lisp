@@ -1,12 +1,12 @@
-(defpackage #:hsx-test/element
+(defpackage #:shoelace-hsx-test/element
   (:use #:cl
         #:rove
-        #:hsx/element)
+        #:shoelace-hsx/element)
   (:import-from #:named-readtables
                 #:in-readtable)
   (:import-from #:mstrings
                 #:mstring-syntax))
-(in-package #:hsx-test/element)
+(in-package #:shoelace-hsx-test/element)
 
 (in-readtable mstring-syntax)
 

