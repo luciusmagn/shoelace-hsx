@@ -1,12 +1,11 @@
-# HSX – Hypertext S-expression
+# Shoelace HSX – Hypertext S-expression
 
-**HSX** is a simple and powerful HTML generation library for Common Lisp, inspired by JSX. It allows you to write HTML using native Lisp syntax.
+**Shoelace HSX** is a simple and powerful HTML generation library for Common Lisp, inspired by JSX. It allows you to write HTML using native Lisp syntax.
 
-[Practical usage example](https://github.com/skyizwhite/website)
+This is a fork of the original HSX library by @skyizwhite,
+[find it here](https://github.com/skyizwhite/hsx)
 
-> 🚧 **BETA NOTICE:**  
-> This library is still in early development. APIs may change.  
-> See [release notes](https://github.com/skyizwhite/shoelace-hsx/releases) for details.
+It adds all the shoelace elements as builtins.
 
 ## ⚙️ How HSX Works
 
