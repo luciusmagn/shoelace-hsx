@@ -26,7 +26,7 @@
   sl-alert sl-animated-image sl-animation sl-avatar sl-badge sl-breadcrumb
   sl-breadcrumb-item sl-button sl-button-group sl-card sl-carousel sl-carousel-item
   sl-checkbox sl-color-picker sl-copy-button sl-details sl-dialog sl-divider
-  sl-drawer sl-dropdown sl-format-bytes sl-format-date sl-format-number
+  sl-drawer sl-dropdown sl-form sl-format-bytes sl-format-date sl-format-number
   sl-icon sl-icon-button sl-image-comparer sl-include sl-input sl-menu
   sl-menu-item sl-menu-label sl-mutation-observer sl-option sl-popup
   sl-progress-bar sl-progress-ring sl-qr-code sl-radio sl-radio-button
